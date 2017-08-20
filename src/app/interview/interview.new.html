@@ -1,0 +1,157 @@
+
+    <div class="content-area">
+        <div class="grid-4">
+            <div class="alert alert-danger" ng-show="vm.error">
+                {{vm.error}}
+            </div>
+            <form class="form grid-4" name="createForm"  ng-submit="vm.create(createForm)" novalidate>
+                <div class="field-box grid-2" ng-class="{ 'has-error' : createForm.purpose.$invalid && !createForm.purpose.$pristine }">
+                    <label>Interview Purpose</label>
+                     <select class="form-control" name="purpose" ng-model="vm.data.purpose"
+                            ng-options="purpose for purpose in vm.purposes" required>
+                            <option value="">Select</option>
+                    </select>
+                    <div ng-show="createForm.purpose.$error && !createForm.purpose.$pristine" ng-messages="createForm.purpose.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                    </div> 
+                </div>
+
+                 <div class="field-box grid-2" ng-class="{ 'has-error' : createForm.city.$invalid && !createForm.city.$pristine }">
+                    <label>City</label>
+                    <select class="form-control" name="city" ng-model="vm.data.city"
+                            ng-options="city for city in vm.cities" required>
+                            <option value="">Select</option>
+                    </select>
+                    <div ng-show="createForm.city.$error && !createForm.city.$pristine" ng-messages="createForm.city.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="vm.data.city === 'Elsewhere'" class="field-box grid-4" ng-class="{ 'has-error' : createForm.cityName.$invalid && !createForm.cityName.$pristine }">
+                    <label>Enter city name</label>
+                    <input class="form-control" type="text"
+                           placeholder="City name " ng-model="vm.data.cityName" name="cityName" required>
+                    <div ng-show="createForm.cityName.$error && !createForm.cityName.$pristine" ng-messages="createForm.cityName.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.address.$invalid && !createForm.address.$pristine }">
+                    <label>Address</label>
+                    <input class="form-control" type="text" placeholder="Address" ng-model="vm.data.address"
+                           name="address" required ng-minlength="3" ng-maxlength="50">
+                    <div ng-show="createForm.address.$error && !createForm.address.$pristine" ng-messages="createForm.address.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                        <div ng-message="minlength" class="help-block">
+                            Address is too short
+                        </div>
+                        <div ng-message="maxlength" class="help-block">
+                            Address is too long
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.interviewer.$invalid && !createForm.interviewer.$pristine }">
+                    <label>Interviewer</label>
+                    <input class="form-control" type="text"  placeholder="Interviewers full name" ng-model="vm.data.interviewer"
+                           name="interviewer" required ng-minlength="3" ng-maxlength="50">
+                    <div ng-show="createForm.interviewer.$error && !createForm.interviewer.$pristine" ng-messages="createForm.interviewer.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                        <div ng-message="minlength" class="help-block">
+                            Interviewers name is too short
+                        </div>
+                        <div ng-message="maxlength" class="help-block">
+                            Interviewers name is too long
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.interviewee.$invalid && !createForm.interviewee.$pristine }">
+                    <label>Interviewee</label>
+                    <input class="form-control" type="text" placeholder="Interviewees full name" ng-model="vm.data.interviewee"
+                           name="interviewee" required ng-minlength="3" ng-maxlength="50">
+                    <div ng-show="createForm.interviewee.$error && !createForm.interviewee.$pristine" ng-messages="createForm.interviewee.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                        <div ng-message="minlength" class="help-block">
+                            Interviewees name is too short
+                        </div>
+                        <div ng-message="maxlength" class="help-block">
+                            Interviewees name is too long
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.email.$invalid && !createForm.email.$pristine }">
+                    <label>Email</label>
+                    <input class="form-control" type="text" class="form-control" placeholder="Interviewees email address" ng-model="vm.data.email"
+                           name="email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required >
+                    <div ng-show="createForm.email.$error && !createForm.email.$pristine" ng-messages="createForm.email.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                        <div ng-message="pattern" class="help-block">
+                            You did not enter email address correctly...
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.phone.$invalid && !createForm.phone.$pristine }">
+                    <label>Phone No</label>
+                    <input class="form-control" type="text" placeholder="Interviewees phone number" ng-model="vm.data.phone"
+                           name="phone" ng-pattern="/^\d{3}-\d{3}-\d{4}$/" required >
+                    <div ng-show="createForm.phone.$error && !createForm.phone.$pristine" ng-messages="createForm.phone.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                        <div ng-message="pattern" class="help-block">
+                            You did not enter phone number correctly...
+                        </div>
+
+                    </div>
+                </div>
+
+            
+
+                <div class="field-box grid-4" ng-class="{ 'has-error' : createForm.date.$invalid && !createForm.date.$pristine }">
+                    <label>Date</label>
+                    <input class="form-control" type="text" name="date" date-time
+                           ng-model="vm.data.date" min-view="date" max-view="date" format="DD-MM-YYYY" auto-close="true"  
+                           readonly="" required="" />
+
+                    <div ng-show="createForm.date.$error && !createForm.date.$pristine" ng-messages="createForm.date.$error">
+                        <div ng-message="required" class="help-block">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="field-box grid-4">
+                    <label>interview Id</label>
+                    <input class="form-control" type="text" placeholder="Unique Interview Id"  ng-model="vm.data.interviewId" required disabled />
+                   <span>
+                   <button type="button" title="Generate unique Id" ng-disabled="vm.data.interviewId" class="button-blue" ng-click="vm.generateId()">Generate</button>
+                  </span>
+                </div>
+
+                <div class="field-box grid-4">
+                    <button type="submit"  class="button-blue" ng-disabled="createForm.$invalid">Submit form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+

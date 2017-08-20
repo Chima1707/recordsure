@@ -1,0 +1,34 @@
+<div class="content-area">
+ <div class="grid-4">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th>Interview Id</th>
+                <th>Date</th>
+                <th>Purpose</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Interviewer</th>
+                <th>Interviewee</th>
+                <th>Interviewees Email</th>
+                <th>Interviewees Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="interview in vm.interviews">
+                <td>{{interview.interviewId}}</td>
+                <td ng-bind="interview.date | date:'dd-MM-yyyy'"></td>
+                <td><span purpose text="{{interview.purpose}}"></span></td>
+                <td ng-bind-html="interview.city === 'Elsewhere' ? interview.cityName : interview.city"></td>
+                <td ng-bind-html="interview.address"></td>
+                <td ng-bind-html="interview.interviewer | shorten"></td>
+                <td ng-bind-html="interview.interviewee | shorten"></td>
+                <td ng-bind="interview.email"></td>
+                <td ng-bind="interview.phone"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>    
+
+
